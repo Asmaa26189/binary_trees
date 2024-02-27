@@ -5,10 +5,10 @@
  * @size: size of array
  * Return: BST tree from array
  */
-b_s *array_to_bst(int *array, size_t size)
+bst_t *array_to_bst(int *array, size_t size)
 {
 	size_t i = 0;
-	b_s *root;
+	bst_t *root;
 
 	root = NULL;
 	if (size == 0)

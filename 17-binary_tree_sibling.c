@@ -6,7 +6,7 @@
  * Return: The sibling node
  */
 
-binary_tree_s *binary_tree_sibling(binary_tree_s *node)
+binary_tree_t *binary_tree_sibling(binary_tree_t *node)
 {
 	if (node == NULL || node->parent == NULL)
 	{

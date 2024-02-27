@@ -4,7 +4,7 @@
  * @node: Type pointer of node to be created
  * Return: the node created
  */
-link_t *new_node(binary_tree_s *node)
+link_t *new_node(binary_tree_t *node)
 {
 	link_t *new;
 
@@ -39,7 +39,7 @@ void free_q(link_t *head)
  * @head: Type head node of in the stack
  * @tail: Type tail node of in the stack
  */
-void _push(binary_tree_s *node, link_t *head, link_t **tail)
+void _push(binary_tree_t *node, link_t *head, link_t **tail)
 {
 	link_t *new;
 
@@ -69,7 +69,7 @@ void _pop(link_t **head)
  * @tree: Type pointer of node of the tree
  * Return: 1 if is complete 0 if it is not
  */
-int binary_tree_is_complete(const binary_tree_s *tree)
+int binary_tree_is_complete(const binary_tree_t *tree)
 {
 	link_t *head, *tail;
 	int flag = 0;
@@ -78,7 +78,7 @@ int binary_tree_is_complete(const binary_tree_s *tree)
 	{
 		return (0);
 	}
-	head = tail = new_node((binary_tree_s *)tree);
+	head = tail = new_node((binary_tree_t *)tree);
 	if (head == NULL)
 	{
 		exit(1);

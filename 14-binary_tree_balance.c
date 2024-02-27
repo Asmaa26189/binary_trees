@@ -6,7 +6,7 @@
  * Return: the height
  */
 
-size_t binary_tree_height_b(const binary_tree_s *tree)
+size_t binary_tree_height_b(const binary_tree_t *tree)
 {
 	size_t l = 0;
 	size_t r = 0;
@@ -32,7 +32,7 @@ size_t binary_tree_height_b(const binary_tree_s *tree)
  * Return: balanced factor
  */
 
-int binary_tree_balance(const binary_tree_s *tree)
+int binary_tree_balance(const binary_tree_t *tree)
 {
 	int right = 0, left = 0, total = 0;
 

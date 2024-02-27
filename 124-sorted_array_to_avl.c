@@ -7,19 +7,19 @@
  * @last: position where the array ends
  * Return: tree created
  */
-a_s *aux_sort(a_s *parent, int *array, int begin, int last)
+avl_t *aux_sort(avl_t *parent, int *array, int begin, int last)
 {
-	a_s *root;
-	binary_tree_s *aux;
+	avl_t *root;
+	binary_tree_t *aux;
 	int mid = 0;
 
 	if (begin <= last)
 	{
 		mid = (begin + last) / 2;
-		aux = binary_tree_node((binary_tree_s *)parent, array[mid]);
+		aux = binary_tree_node((binary_tree_t *)parent, array[mid]);
 		if (aux == NULL)
 			return (NULL);
-		root = (a_s *)aux;
+		root = (avl_t *)aux;
 		root->left = aux_sort(root, array, begin, mid - 1);
 		root->right = aux_sort(root, array, mid + 1, last);
 		return (root);
@@ -32,7 +32,7 @@ a_s *aux_sort(a_s *parent, int *array, int begin, int last)
  * @size: size of the sorted array
  * Return: alv tree form sorted array
  */
-a_s *sorted_array_to_avl(int *array, size_t size)
+avl_t *sorted_array_to_avl(int *array, size_t size)
 {
 	if (array == NULL || size == 0)
 		return (NULL);

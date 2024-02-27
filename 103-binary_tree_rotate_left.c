@@ -5,9 +5,9 @@
  * @tree: The root node of the three
  * Return: Pointer node of the new node
  */
-binary_tree_s *binary_tree_rotate_left(binary_tree_s *tree)
+binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree)
 {
-	binary_tree_s *pivot;
+	binary_tree_t *pivot;
 
 	if (tree == NULL || tree->right == NULL)
 	{

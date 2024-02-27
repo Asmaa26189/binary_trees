@@ -4,7 +4,7 @@
  * @tree: tree to go through
  * Return: the height
  */
-size_t binary_tree_height(const binary_tree_s *tree)
+size_t binary_tree_height(const binary_tree_t *tree)
 {
 	size_t l = 0;
 	size_t r = 0;
@@ -28,7 +28,7 @@ size_t binary_tree_height(const binary_tree_s *tree)
  * @tree: node to check the depth
  * Return: 0 is it is the root or number of depth
  */
-size_t binary_tree_depth(const binary_tree_s *tree)
+size_t binary_tree_depth(const binary_tree_t *tree)
 {
 	return ((tree && tree->parent) ? 1 + binary_tree_depth(tree->parent) : 0);
 }
@@ -39,7 +39,7 @@ size_t binary_tree_depth(const binary_tree_s *tree)
  * @level: depth of node to store
  * Return: Nothing
  */
-void linked_node(link_t **head, const binary_tree_s *tree, size_t level)
+void linked_node(link_t **head, const binary_tree_t *tree, size_t level)
 {
 	link_t *new, *aux;
 
@@ -73,7 +73,7 @@ void linked_node(link_t **head, const binary_tree_s *tree, size_t level)
  * @tree: node to check
  * Return: Nothing by default it affects the pointer
  */
-void recursion(link_t **head, const binary_tree_s *tree)
+void recursion(link_t **head, const binary_tree_t *tree)
 {
 	size_t level = 0;
 
@@ -91,7 +91,7 @@ void recursion(link_t **head, const binary_tree_s *tree)
  * @func: function to use
  * Return: Nothing
  */
-void binary_tree_levelorder(const binary_tree_s *tree, void (*func)(int))
+void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
 	link_t *head, *aux;
 	size_t height = 0, count = 0;

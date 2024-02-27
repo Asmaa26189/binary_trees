@@ -6,7 +6,7 @@
  * @tree: tree to check
  * Return: 0 if is not a perfect or other number that is the level of height
  */
-int tree_is_perfect(const binary_tree_s *tree)
+int tree_is_perfect(const binary_tree_t *tree)
 {
 	int l = 0, r = 0;
 
@@ -32,7 +32,7 @@ int tree_is_perfect(const binary_tree_s *tree)
  * @tree: tree to check
  * Return: 1 is it is or 0 if not
  */
-int binary_tree_is_perfect(const binary_tree_s *tree)
+int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	int result = 0;
 

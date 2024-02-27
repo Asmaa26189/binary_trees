@@ -7,9 +7,9 @@
  * Return: NULL if it fails or the new node
  */
 
-binary_tree_s *binary_tree_insert_right(binary_tree_s *parent, int value)
+binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
-	binary_tree_s *new_node;
+	binary_tree_t *new_node;
 
 	if (parent == NULL)
 	{

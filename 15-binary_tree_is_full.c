@@ -5,7 +5,7 @@
  * @tree: tree to check
  * Return: 1 if it is a full 0 if not
  */
-int binary_tree_is_full(const binary_tree_s *tree)
+int binary_tree_is_full(const binary_tree_t *tree)
 {
 	int left = 0, right = 0;
 

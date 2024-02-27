@@ -8,7 +8,7 @@
  * @nval: insertion value of the AVL.
  * Return: pointer to the new root after insertion otherwise NULL
  */
-a_s *r_insert_node(a_s **tree, a_s *parent, a_s **new, int nval)
+avl_t *r_insert_node(avl_t **tree, avl_t *parent, avl_t **new, int nval)
 {
 	int bval;
 
@@ -57,9 +57,9 @@ a_s *r_insert_node(a_s **tree, a_s *parent, a_s **new, int nval)
  * @value: value to store in the node to be inserted
  * Return: inserted node, or NULL if fails.
  */
-a_s *avl_insert(a_s **tree, int value)
+avl_t *avl_insert(avl_t **tree, int value)
 {
-	a_s *new = NULL;
+	avl_t *new = NULL;
 
 	if (*tree == NULL)
 	{

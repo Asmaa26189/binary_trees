@@ -5,7 +5,7 @@
  * @tree: tree to go through
  * Return: balanced factor
  */
-void bal(a_s **tree)
+void bal(avl_t **tree)
 {
 	int bval;
 
@@ -15,18 +15,18 @@ void bal(a_s **tree)
 		return;
 	bal(&(*tree)->left);
 	bal(&(*tree)->right);
-	bval = binary_tree_balance((const binary_tree_s *)*tree);
+	bval = binary_tree_balance((const binary_tree_t *)*tree);
 	if (bval > 1)
-		*tree = binary_tree_rotate_right((binary_tree_s *)*tree);
+		*tree = binary_tree_rotate_right((binary_tree_t *)*tree);
 	else if (bval < -1)
-		*tree = binary_tree_rotate_left((binary_tree_s *)*tree);
+		*tree = binary_tree_rotate_left((binary_tree_t *)*tree);
 }
 /**
  * successor - get the next successor i mean the min node in the right subtree
  * @node: tree to check
  * Return: the min value of this tree
  */
-int successor(b_s *node)
+int successor(bst_t *node)
 {
 	int left = 0;
 
@@ -50,7 +50,7 @@ int successor(b_s *node)
  *@root: node to remove
  *Return: 0 if it has no children or other value if it has
  */
-int remove_type(b_s *root)
+int remove_type(bst_t *root)
 {
 	int new_value = 0;
 
@@ -97,7 +97,7 @@ int remove_type(b_s *root)
  * @value: node with this value to remove
  * Return: the tree changed
  */
-b_s *bst_remove(b_s *root, int value)
+bst_t *bst_remove(bst_t *root, int value)
 {
 	int type = 0;
 
@@ -124,9 +124,9 @@ b_s *bst_remove(b_s *root, int value)
  * @value: node with this value to remove
  * Return: the tree changed
  */
-a_s *avl_remove(a_s *root, int value)
+avl_t *avl_remove(avl_t *root, int value)
 {
-	a_s *root_a = (a_s *) bst_remove((b_s *) root, value);
+	avl_t *root_a = (avl_t *) bst_remove((bst_t *) root, value);
 
 	if (root_a == NULL)
 		return (NULL);

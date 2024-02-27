@@ -6,10 +6,10 @@
  * @size: size of array
  * Return: AVL tree from array
  */
-a_s *array_to_avl(int *array, size_t size)
+avl_t *array_to_avl(int *array, size_t size)
 {
 	size_t i, j = 0;
-	a_s *root;
+	avl_t *root;
 
 	root = NULL;
 	if (size == 0)

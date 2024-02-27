@@ -6,7 +6,7 @@
  * @max: value to compare
  * Return: 1 if all nodes are smaller or equal or 0 if not
  */
-int check_sub_tree_Left(const binary_tree_s *node, int max)
+int check_sub_tree_Left(const binary_tree_t *node, int max)
 {
 	int left = 0, right = 0;
 
@@ -32,7 +32,7 @@ int check_sub_tree_Left(const binary_tree_s *node, int max)
  * @min: value to compare
  * Return: 1 if all is bigger or equal or 0 if not
  */
-int check_sub_tree_Right(const binary_tree_s *node, int min)
+int check_sub_tree_Right(const binary_tree_t *node, int min)
 {
 	int left = 0, right = 0;
 
@@ -60,7 +60,7 @@ int check_sub_tree_Right(const binary_tree_s *node, int min)
  * @tree: node that point to the tree to check
  * Return: 1 if it is a BST or 0 if not
  */
-int binary_tree_is_bst(const binary_tree_s *tree)
+int binary_tree_is_bst(const binary_tree_t *tree)
 {
 	int var = 0, left = 2, right = 2;
 
