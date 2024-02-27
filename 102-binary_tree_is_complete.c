@@ -1,113 +1,114 @@
 #include "binary_trees.h"
 /**
- * new_node - Function that creates a new_node in a linked_list
- * @node: Type pointer of node to be created
- * Return: the node created
+ * new_node - new_node
+ * @node: node
+ * Return: link_t
  */
 link_t *new_node(binary_tree_t *node)
 {
-	link_t *new;
+	link_t *n_new;
 
-	new =  malloc(sizeof(link_t));
-	if (new == NULL)
+	n_new =  malloc(sizeof(link_t));
+	if (n_new == NULL)
 	{
 		return (NULL);
 	}
-	new->node = node;
-	new->next = NULL;
+	n_new->node = node;
+	n_new->next = NULL;
 
-	return (new);
+	return (n_new);
 }
 /**
- * free_q - Function that free the nodes at the linked list
- * @head: Node of the linked_list
+ * free_q - free_q
+ * @hd: hd
  */
-void free_q(link_t *head)
+void free_q(link_t *hd)
 {
-	link_t *temp_node;
+	link_t *tmp_n;
 
-	while (head)
+	while (hd)
 	{
-		temp_node = head->next;
-		free(head);
-		head = temp_node;
+		tmp_n = hd->next;
+		free(hd);
+		hd = tmp_n;
 	}
 }
 /**
- * _push - Function that pushes a node into the stack
- * @node: Type pointer of node of the tree
- * @head: Type head node of in the stack
- * @tail: Type tail node of in the stack
+ * _push - _push
+ * @node: node
+ * @hd: hd
+ * @tl: tl
  */
-void _push(binary_tree_t *node, link_t *head, link_t **tail)
+void _push(binary_tree_t *node, link_t *hd, link_t **tl)
 {
-	link_t *new;
+	link_t *n_new;
 
-	new = new_node(node);
-	if (new == NULL)
+	n_new = new_node(node);
+	if (n_new == NULL)
 	{
-		free_q(head);
+		free_q(hd);
 		exit(1);
 	}
-	(*tail)->next = new;
-	*tail = new;
+	(*tl)->next = n_new;
+	*tl = n_new;
 }
 /**
- * _pop - Function that pops a node into the stack
- * @head: Type head node of in the stack
+ * _pop - _pop
+ * @hd: hd
  */
-void _pop(link_t **head)
+void _pop(link_t **hd)
 {
-	link_t *temp_node;
+	link_t *tmp_n;
 
-	temp_node = (*head)->next;
-	free(*head);
-	*head = temp_node;
+	tmp_n = (*hd)->next;
+	free(*hd);
+	*hd = tmp_n;
 }
 /**
- * binary_tree_is_complete - Function that checks if a binary tree is complete
- * @tree: Type pointer of node of the tree
- * Return: 1 if is complete 0 if it is not
+ * binary_tree_is_complete - binary_tree_is_complete
+ * @tree: tree
+ * Return: int
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-	link_t *head, *tail;
-	int flag = 0;
+	link_t *hd;
+	link_t *tl;
+	int flg = 0;
 
 	if (tree == NULL)
 	{
 		return (0);
 	}
-	head = tail = new_node((binary_tree_t *)tree);
-	if (head == NULL)
+	hd = tl = new_node((binary_tree_t *)tree);
+	if (hd == NULL)
 	{
 		exit(1);
 	}
-	while (head != NULL)
+	while (hd != NULL)
 	{
-		if (head->node->left != NULL)
+		if (hd->node->left != NULL)
 		{
-			if (flag == 1)
+			if (flg == 1)
 			{
-				free_q(head);
+				free_q(hd);
 				return (0);
 			}
-			_push(head->node->left, head, &tail);
+			_push(hd->node->left, hd, &tl);
 		}
 		else
-			flag = 1;
-		if (head->node->right != NULL)
+			flg = 1;
+		if (hd->node->right != NULL)
 		{
-			if (flag == 1)
+			if (flg == 1)
 			{
-				free_q(head);
+				free_q(hd);
 				return (0);
 			}
-			_push(head->node->right, head, &tail);
+			_push(hd->node->right, hd, &tl);
 		}
 		else
-			flag = 1;
-		_pop(&head);
+			flg = 1;
+		_pop(&hd);
 	}
 	return (1);
 }
