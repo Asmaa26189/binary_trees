@@ -1,15 +1,15 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_height - Function that measures the height of a binary tree
- * @tree: tree to go through
- * Return: the height
+ * binary_tree_height - binary_tree_height
+ * @tree: tree
+ * Return: size_t
  */
 
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	size_t l = 0;
-	size_t r = 0;
+	size_t l_s = 0;
+	size_t r_s = 0;
 
 	if (tree == NULL)
 	{
@@ -19,23 +19,25 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	{
 		if (tree)
 		{
-			l = tree->left ? 1 + binary_tree_height(tree->left) : 1;
-			r = tree->right ? 1 + binary_tree_height(tree->right) : 1;
+			l_s = tree->left ? 1 + binary_tree_height(tree->left) : 1;
+			r_s = tree->right ? 1 + binary_tree_height(tree->right) : 1;
 		}
-		return ((l > r) ? l : r);
+		return ((l_s > r_s) ? l_s : r_s);
 		}
 }
 
 /**
- * bal_avl - Auxiliar function to compare each subtree if its AVL.
- * @tree: node that point to the tree to check.
- * @high: node that point to the higher node selected
- * @lower: node that point to the lower node selected.
- * Return: 1 if tree is AVL, 0 if not.
+ * bal_avl - bal_avl
+ * @tree: tree
+ * @high: high
+ * @lower: lower
+ * Return: int
  */
 int bal_avl(const binary_tree_t *tree, int lower, int high)
 {
-	size_t height_l, height_r, balancer;
+	size_t h_l;
+	size_t h_r;
+	size_t br;
 
 	if (tree != NULL)
 	{
@@ -43,10 +45,10 @@ int bal_avl(const binary_tree_t *tree, int lower, int high)
 		{
 			return (0);
 		}
-		height_l = binary_tree_height(tree->left);
-		height_r = binary_tree_height(tree->right);
-		balancer = height_l > height_r ? height_l - height_r : height_r - height_l;
-		if (balancer > 1)
+		h_l = binary_tree_height(tree->left);
+		h_r = binary_tree_height(tree->right);
+		br = h_l > h_r ? h_l - h_r : h_r - h_l;
+		if (br > 1)
 		{
 			return (0);
 		}
@@ -57,9 +59,9 @@ int bal_avl(const binary_tree_t *tree, int lower, int high)
 }
 
 /**
- * binary_tree_is_avl - checks if a binary tree is a valid AVL tree.
- * @tree: node that point to the tree to check.
- * Return: 1 if tree is AVL, 0 if not.
+ * binary_tree_is_avl - binary_tree_is_avl
+ * @tree: tree
+ * Return: int
  */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
