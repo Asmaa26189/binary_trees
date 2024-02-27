@@ -1,13 +1,13 @@
 #include "binary_trees.h"
 /**
- * binary_tree_nodes - function that returns # of nodes in a tree with children
- * @tree: tree to check
- * Return: number of nodes with children
+ * binary_tree_nodes - binary_tree_nodes
+ * @tree: tree
+ * Return: size_t
  */
 size_t binary_tree_nodes(const binary_tree_t *tree)
 {
 
-	size_t  node = 0;
+	size_t  n = 0;
 
 	if (tree == NULL)
 	{
@@ -15,9 +15,9 @@ size_t binary_tree_nodes(const binary_tree_t *tree)
 	}
 	else
 	{
-		node += ((tree->left || tree->right) ? 1 : 0);
-		node += binary_tree_nodes(tree->left);
-		node += binary_tree_nodes(tree->right);
-		return (node);
+		n += ((tree->left || tree->right) ? 1 : 0);
+		n += binary_tree_nodes(tree->left);
+		n += binary_tree_nodes(tree->right);
+		return (n);
 	}
 }
