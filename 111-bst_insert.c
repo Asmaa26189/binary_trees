@@ -1,49 +1,50 @@
 #include "binary_trees.h"
 /**
- * bst_insert - insert nodes in order to create a BST tree
- * @tree: tree to create with type BST
- * @value: value of node to insert
- * Return: BST tree
+ * bst_insert - bst_insert
+ * @tree: tree
+ * @value: value
+ * Return: bst_t
  */
 bst_t *bst_insert(bst_t **tree, int value)
 {
-	bst_t *new, *temp;
-	binary_tree_t *aux;
+	bst_t *n_new;
+	bst_t *tmp;
+	binary_tree_t *a_x;
 
 	if (tree == NULL)
 		return (NULL);
 
 	if (*tree == NULL)
 	{
-		aux = binary_tree_node((binary_tree_t *)(*tree), value);
-		new = (bst_t *)aux;
-		*tree = new;
+		a_x = binary_tree_node((binary_tree_t *)(*tree), value);
+		n_new = (bst_t *)a_x;
+		*tree = n_new;
 	}
 	else
 	{
-		temp = *tree;
-		if (value < temp->n)
+		tmp = *tree;
+		if (value < tmp->n)
 		{
-			if (temp->left)
-				new = bst_insert(&temp->left, value);
+			if (tmp->left)
+				n_new = bst_insert(&tmp->left, value);
 			else
 			{
-				aux = binary_tree_node((binary_tree_t *)temp, value);
-				new = temp->left = (bst_t *)aux;
+				a_x = binary_tree_node((binary_tree_t *)tmp, value);
+				n_new = tmp->left = (bst_t *)a_x;
 			}
 		}
-		else if (value > temp->n)
+		else if (value > tmp->n)
 		{
-			if (temp->right)
-				new = bst_insert(&temp->right, value);
+			if (tmp->right)
+				n_new = bst_insert(&tmp->right, value);
 			else
 			{
-				aux = binary_tree_node((binary_tree_t *)temp, value);
-				new = temp->right = aux;
+				a_x = binary_tree_node((binary_tree_t *)tmp, value);
+				n_new = tmp->right = a_x;
 			}
 		}
 		else
 			return (NULL);
 	}
-	return (new);
+	return (n_new);
 }
