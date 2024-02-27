@@ -1,13 +1,13 @@
 #include "binary_trees.h"
 /**
- * binary_tree_height - Function that measures the height of a binary tree
- * @tree: tree to go through
- * Return: the height
+ * binary_tree_height - binary_tree_height
+ * @tree: tree
+ * Return: size_t
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	size_t l = 0;
-	size_t r = 0;
+	size_t l_b_t = 0;
+	size_t r_b_t = 0;
 
 	if (tree == NULL)
 	{
@@ -17,84 +17,86 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	{
 		if (tree)
 		{
-			l = tree->left ? 1 + binary_tree_height(tree->left) : 0;
-			r = tree->right ? 1 + binary_tree_height(tree->right) : 0;
+			l_b_t = tree->left ? 1 + binary_tree_height(tree->left) : 0;
+			r_b_t = tree->right ? 1 + binary_tree_height(tree->right) : 0;
 		}
-		return ((l > r) ? l : r);
+		return ((l_b_t > r_b_t) ? l_b_t : r_b_t);
 	}
 }
 /**
- * binary_tree_depth - depth of specified node from root
- * @tree: node to check the depth
- * Return: 0 is it is the root or number of depth
+ * binary_tree_depth - binary_tree_depth
+ * @tree: tree
+ * Return: size_t
  */
 size_t binary_tree_depth(const binary_tree_t *tree)
 {
 	return ((tree && tree->parent) ? 1 + binary_tree_depth(tree->parent) : 0);
 }
 /**
- * linked_node - this function makes a linked list from depth level and node
- * @head: pointer to head of linked list
- * @tree: node to store
- * @level: depth of node to store
- * Return: Nothing
+ * linked_node - linked_node
+ * @hd: hd
+ * @tree: tree
+ * @lvl: lvl
+ * Return: void
  */
-void linked_node(link_t **head, const binary_tree_t *tree, size_t level)
+void linked_node(link_t **hd, const binary_tree_t *tree, size_t lvl)
 {
-	link_t *new, *aux;
+	link_t *n_w;
+	link_t *a_x;
 
-	new = malloc(sizeof(link_t));
-	if (new == NULL)
+	n_w = malloc(sizeof(link_t));
+	if (n_w == NULL)
 	{
 		return;
 	}
-	new->n = level;
-	new->node = tree;
-	if (*head == NULL)
+	n_w->n = lvl;
+	n_w->node = tree;
+	if (*hd == NULL)
 	{
-		new->next = NULL;
-		*head = new;
+		n_w->next = NULL;
+		*hd = n_w;
 	}
 	else
 	{
-		aux = *head;
-		while (aux->next != NULL)
+		a_x = *hd;
+		while (a_x->next != NULL)
 		{
-			aux = aux->next;
+			a_x = a_x->next;
 		}
-		new->next = NULL;
-		aux->next = new;
+		n_w->next = NULL;
+		a_x->next = n_w;
 	}
 }
 /**
- * recursion - goes through the complete tree and each stores each node
- * in linked_node function
- * @head: pointer to head of linked list
- * @tree: node to check
- * Return: Nothing by default it affects the pointer
+ * recursion - recursion
+ * @hd: hd
+ * @tree: tree
+ * Return: void
  */
-void recursion(link_t **head, const binary_tree_t *tree)
+void recursion(link_t **hd, const binary_tree_t *tree)
 {
-	size_t level = 0;
+	size_t lvl = 0;
 
 	if (tree != NULL)
 	{
-		level = binary_tree_depth(tree);
-		linked_node(head, tree, level);
-		recursion(head, tree->left);
-		recursion(head, tree->right);
+		lvl = binary_tree_depth(tree);
+		linked_node(hd, tree, lvl);
+		recursion(hd, tree->left);
+		recursion(hd, tree->right);
 	}
 }
 /**
- * binary_tree_levelorder - print the nodes element in a lever-order
- * @tree: root node
- * @func: function to use
- * Return: Nothing
+ * binary_tree_levelorder - binary_tree_levelorder
+ * @tree: tree
+ * @func: func
+ * Return: void
  */
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
-	link_t *head, *aux;
-	size_t height = 0, count = 0;
+	link_t *hd;
+	link_t *a_x;
+	size_t hght = 0;
+	size_t cnt = 0;
 
 	if (!tree || !func)
 	{
@@ -102,27 +104,27 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	}
 	else
 	{
-		height = binary_tree_height(tree);
-		head = NULL;
-		recursion(&head, tree);
-		while (count <= height)
+		hght = binary_tree_height(tree);
+		hd = NULL;
+		recursion(&hd, tree);
+		while (cnt <= hght)
 		{
-			aux = head;
-			while (aux != NULL)
+			a_x = hd;
+			while (a_x != NULL)
 			{
-				if (count == aux->n)
+				if (cnt == a_x->n)
 				{
-					func(aux->node->n);
+					func(a_x->node->n);
 				}
-				aux = aux->next;
+				a_x = a_x->next;
 			}
-			count++;
+			cnt++;
 		}
-		while (head != NULL)
+		while (hd != NULL)
 		{
-			aux = head;
-			head = head->next;
-			free(aux);
+			a_x = hd;
+			hd = hd->next;
+			free(a_x);
 		}
 	}
 }
