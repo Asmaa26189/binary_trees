@@ -1,9 +1,9 @@
 #include "binary_trees.h"
 
 /**
- * bal - Measures balance factor of a AVL
- * @tree: tree to go through
- * Return: balanced factor
+ * bal - bal
+ * @tree: tree
+ * Return: void
  */
 void bal(avl_t **tree)
 {
@@ -22,9 +22,9 @@ void bal(avl_t **tree)
 		*tree = binary_tree_rotate_left((binary_tree_t *)*tree);
 }
 /**
- * successor - get the next successor i mean the min node in the right subtree
- * @node: tree to check
- * Return: the min value of this tree
+ * successor - successor
+ * @node: node
+ * Return: int
  */
 int successor(bst_t *node)
 {
@@ -46,13 +46,13 @@ int successor(bst_t *node)
 
 }
 /**
- *remove_type - function that removes a node depending of its children
- *@root: node to remove
- *Return: 0 if it has no children or other value if it has
+ *remove_type - remove_type
+ *@root: root
+ *Return: int
  */
 int remove_type(bst_t *root)
 {
-	int new_value = 0;
+	int n_value = 0;
 
 	if (!root->left && !root->right)
 	{
@@ -86,20 +86,20 @@ int remove_type(bst_t *root)
 	}
 	else
 	{
-		new_value = successor(root->right);
-		root->n = new_value;
-		return (new_value);
+		n_value = successor(root->right);
+		root->n = n_value;
+		return (n_value);
 	}
 }
 /**
- * bst_remove - remove a node from a BST tree
- * @root: root of the tree
- * @value: node with this value to remove
- * Return: the tree changed
+ * bst_remove - bst_remove
+ * @root: root
+ * @value: value
+ * Return: bst_t
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	int type = 0;
+	int tp = 0;
 
 	if (root == NULL)
 		return (NULL);
@@ -109,9 +109,9 @@ bst_t *bst_remove(bst_t *root, int value)
 		bst_remove(root->right, value);
 	else if (value == root->n)
 	{
-		type = remove_type(root);
-		if (type != 0)
-			bst_remove(root->right, type);
+		tp = remove_type(root);
+		if (tp != 0)
+			bst_remove(root->right, tp);
 	}
 	else
 		return (NULL);
@@ -119,17 +119,17 @@ bst_t *bst_remove(bst_t *root, int value)
 }
 
 /**
- * avl_remove - remove a node from a AVL tree
- * @root: root of the tree
- * @value: node with this value to remove
- * Return: the tree changed
+ * avl_remove - avl_remove
+ * @root: root
+ * @value: value
+ * Return: avl_t
  */
 avl_t *avl_remove(avl_t *root, int value)
 {
-	avl_t *root_a = (avl_t *) bst_remove((bst_t *) root, value);
+	avl_t *rt_a = (avl_t *) bst_remove((bst_t *) root, value);
 
-	if (root_a == NULL)
+	if (rt_a == NULL)
 		return (NULL);
-	bal(&root_a);
-	return (root_a);
+	bal(&rt_a);
+	return (rt_a);
 }
