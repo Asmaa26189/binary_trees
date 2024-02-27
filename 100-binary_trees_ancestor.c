@@ -10,31 +10,27 @@
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 				     const binary_tree_t *second)
 {
-	binary_tree_t *p_binary_tree;
-	binary_tree_t *q_binary_tree;
+	binary_tree_t *p_b_t;
+	binary_tree_t *q_b_t;
 
-	if (first == NULL)
-	{
-		return (NULL);
-	}
-	if (second == NULL)
+	if (first == NULL || second == NULL)
 	{
 		return (NULL);
 	}
 	if (first == second)
 	{
-		return ((binary_tree_t *)first);
+		return ((binary_tree_t *)second);
 	}
 
-	p_binary_tree = first->parent;
-	q_binary_tree = second->parent;
-	if (p_binary_tree == NULL || first == q_binary_tree || (!p_binary_tree->parent && q_binary_tree))
+	p_b_t = first->parent;
+	q_b_t = second->parent;
+	if (p_b_t == NULL || first == q_b_t || (!p_b_t->parent && q_b_t))
 	{
-		return (binary_trees_ancestor(first, q_binary_tree));
+		return (binary_trees_ancestor(first, q_b_t));
 	}
-	else if (q_binary_tree == NULL || p_binary_tree == second || (!q_binary_tree->parent && p_binary_tree))
+	else if (q_b_t == NULL || p_b_t == second || (!q_b_t->parent && p_b_t))
 	{
-		return (binary_trees_ancestor(p_binary_tree, second));
+		return (binary_trees_ancestor(p_b_t, second));
 	}
-	return (binary_trees_ancestor(p_binary_tree, q_binary_tree));
+	return (binary_trees_ancestor(p_b_t, q_b_t));
 }
