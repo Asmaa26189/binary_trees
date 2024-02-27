@@ -1,0 +1,24 @@
+#include "binary_trees.h"
+
+/**
+ * binary_tree_node - binary_tree_node
+ * @parent: parent
+ * @value: value
+ * Return: binary_tree_s
+ */
+
+binary_tree_s *binary_tree_node(binary_tree_s *parent, int value)
+{
+	binary_tree_s *n_node;
+
+	n_node = malloc(sizeof(binary_tree_s));
+	if (n_node == NULL)
+	{
+		return (NULL);
+	}
+	n_node->n = value;
+	n_node->parent = parent;
+	n_node->left = NULL;
+	n_node->right = NULL;
+	return (n_node);
+}
