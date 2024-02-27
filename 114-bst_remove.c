@@ -1,8 +1,8 @@
 #include "binary_trees.h"
 /**
- * successor - get the next successor i mean the min node in the right subtree
- * @node: tree to check
- * Return: the min value of this tree
+ * successor - successor
+ * @node: node
+ * Return: int
  */
 int successor(bst_t *node)
 {
@@ -24,11 +24,9 @@ int successor(bst_t *node)
 
 }
 /**
- * two_children - function that gets the next successor using the min
- * value in the right subtree, and then replace the node value for
- * this successor
- * @root: node tat has two children
- * Return: the value found
+ * two_children - two_children
+ * @root: root
+ * Return: int
  */
 int two_children(bst_t *root)
 {
@@ -39,9 +37,9 @@ int two_children(bst_t *root)
 	return (new_value);
 }
 /**
- *remove_type - function that removes a node depending of its children
- *@root: node to remove
- *Return: 0 if it has no children or other value if it has
+ *remove_type - remove_type
+ *@root: root
+ *Return: int
  */
 int remove_type(bst_t *root)
 {
@@ -79,14 +77,14 @@ int remove_type(bst_t *root)
 		return (two_children(root));
 }
 /**
- * bst_remove - remove a node from a BST tree
- * @root: root of the tree
- * @value: node with this value to remove
- * Return: the tree changed
+ * bst_remove - bst_remove
+ * @root: root
+ * @value: value
+ * Return: bst_t
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	int type = 0;
+	int tp = 0;
 
 	if (root == NULL)
 		return (NULL);
@@ -96,9 +94,9 @@ bst_t *bst_remove(bst_t *root, int value)
 		bst_remove(root->right, value);
 	else if (value == root->n)
 	{
-		type = remove_type(root);
-		if (type != 0)
-			bst_remove(root->right, type);
+		tp = remove_type(root);
+		if (tp != 0)
+			bst_remove(root->right, tp);
 	}
 	else
 		return (NULL);
