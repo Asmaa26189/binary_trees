@@ -1,30 +1,30 @@
 #include "binary_trees.h"
 /**
- * array_to_bst - turns an array to a BST tree
- * @array: array to turns to BST tree
- * @size: size of array
- * Return: BST tree from array
+ * array_to_bst - array_to_bst
+ * @array: array
+ * @size: size
+ * Return: bst_t
  */
 bst_t *array_to_bst(int *array, size_t size)
 {
-	size_t i = 0;
-	bst_t *root;
+	size_t index = 0;
+	bst_t *rt;
 
-	root = NULL;
+	rt = NULL;
 	if (size == 0)
 	{
 		return (NULL);
 	}
-	for (; i < size; i++)
+	for (; index < size; index++)
 	{
-		if (i == 0)
+		if (index == 0)
 		{
-			bst_insert(&root, array[i]);
+			bst_insert(&rt, array[index]);
 		}
 		else
 		{
-			bst_insert(&root, array[i]);
+			bst_insert(&rt, array[index]);
 		}
 	}
-	return (root);
+	return (rt);
 }
